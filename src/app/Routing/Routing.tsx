@@ -1,5 +1,6 @@
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import { Registration, Login, SearchBook, LibraryBook, InfoBook } from '../providers';
+import { Registration, Login, SearchBook, LibraryBook, InfoBook, SettingsApp } from '../providers';
+
 
 
 
@@ -39,6 +40,11 @@ function Routing() {
       <Route
         path='/info'
         element={<InfoBook
+          navigate={navigate}
+        />} />
+      <Route
+        path='/settings'
+        element={<SettingsApp
           navigate={navigate}
         />} />
     </Routes>
