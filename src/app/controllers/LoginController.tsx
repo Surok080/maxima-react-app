@@ -11,6 +11,7 @@ interface IState {
   status: any,
   alerMessage: any,
   errorReg: any,
+  checked: boolean,
 }
 
 export default class LoginController extends React.Component<Props, IState> {
@@ -21,14 +22,32 @@ export default class LoginController extends React.Component<Props, IState> {
     status: true,
     alerMessage: '',
     errorReg: false,
+    checked: false,
   };
 
+  componentDidMount = () => {
+    this.getAccount()
+  }
+
+  private getAccount = async () => {
+    const tokenLocal = await localStorage.getItem('Access_token');
+    const tokenSession = await sessionStorage.getItem('Access_token');
+    if (tokenLocal || tokenSession) {
+      this.props.navigate("/search");
+    }
+  }
+
   private handleChange = (value: string, nameState: string) => {
-    this.setState({ 
+    this.setState({
       [nameState]: value,
       errorReg: false,
       alerMessage: '',
     } as Pick<IState, keyof IState>);
+  };
+
+  private checkboxChange = (e: any) => {
+    console.log(this.state.checked, 'test');
+    this.setState({ checked: e.target.checked });
   };
 
   private handleSubmit = (e: any) => {
@@ -36,7 +55,7 @@ export default class LoginController extends React.Component<Props, IState> {
     const urlLog = 'https://internsapi.public.osora.ru/api/auth/login';
 
     e.preventDefault();
-    this.setState({ 
+    this.setState({
       status: false,
       errorReg: false,
       alerMessage: ''
@@ -44,7 +63,7 @@ export default class LoginController extends React.Component<Props, IState> {
 
     if (!regExpEmail.test(this.state.email)) {
       this.loginReg();
-      this.setState({ 
+      this.setState({
         alerMessage: 'ERROR-email',
         errorReg: true
       });
@@ -66,11 +85,17 @@ export default class LoginController extends React.Component<Props, IState> {
       .then((data) => {
         if (data.status) {
           this.setState({ status: true });
+          if (this.state.checked) {
+            localStorage.setItem('Access_token', JSON.stringify(data.data.access_token));
+          } else {
+            sessionStorage.setItem('Access_token', JSON.stringify(data.data.access_token));
+          }
+          
           this.props.navigate("/search");
-          localStorage.setItem('Access_token', JSON.stringify(data.data.access_token));
+
         } else {
           this.loginReg();
-          this.setState({ 
+          this.setState({
             alerMessage: data.errors,
             errorReg: true
           });
@@ -87,7 +112,7 @@ export default class LoginController extends React.Component<Props, IState> {
   };
 
   private loginReg = () => {
-    this.setState({ 
+    this.setState({
       status: true,
       email: '',
       password: '',
@@ -103,6 +128,7 @@ export default class LoginController extends React.Component<Props, IState> {
       <View
         navigate={this.props.navigate}
         handleSubmit={this.handleSubmit}
+        checkboxChange={this.checkboxChange}
         handleChange={this.handleChange}
         goToRegistration={this.goToRegistration}
         state={this.state}

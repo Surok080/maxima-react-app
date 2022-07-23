@@ -22,6 +22,7 @@ function Routing() {
       <Route
         path='/search'
         element={<SearchBook
+          navigate={navigate}
         />} />
       <Route
         path='/library'
@@ -38,6 +39,7 @@ function Routing() {
       <Route
         path='/info'
         element={<InfoBook
+          navigate={navigate}
         />} />
     </Routes>
   );

@@ -24,7 +24,16 @@ export default class LibraryBookController extends React.Component<Props, IState
   };
 
   componentDidMount() {
+    this.getAccount()
     this.getListBook();
+  }
+
+  private getAccount = async () => {
+    const tokenLocal = await localStorage.getItem('Access_token');
+    const tokenSession = await sessionStorage.getItem('Access_token');
+    if (!tokenLocal && !tokenSession) {
+      this.props.navigate("/");
+    }
   }
 
   private getListBook = async () => {

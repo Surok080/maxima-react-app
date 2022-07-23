@@ -3,6 +3,7 @@ import View from '../views/Search/index';
 
 interface Props {
   viewModel: any,
+  navigate: any,
 }
 
 interface IState {
@@ -29,6 +30,18 @@ export default class SearchBookController extends React.Component<Props
     addBookError: true,
     addBookcomplete: false,
   };
+
+  componentDidMount = () => {
+    this.getAccount()
+  }
+
+  private getAccount = async () => {
+    const tokenLocal = await localStorage.getItem('Access_token');
+    const tokenSession = await sessionStorage.getItem('Access_token');
+    if (!tokenLocal && !tokenSession) {
+      this.props.navigate("/");
+    }
+  }
 
   private searchBook = async (e: any) => {
     this.setState({

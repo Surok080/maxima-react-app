@@ -3,6 +3,7 @@ import View from '../views/InfoBook/index';
 
 interface Props {
   viewModel: any,
+  navigate: any,
 }
 
 interface IState {
@@ -22,7 +23,16 @@ export default class InfoBookController extends React.Component<Props, IState> {
   };
 
   componentDidMount() {
+    this.getAccount();
     this.getListBook();
+  }
+
+  private getAccount = async () => {
+    const tokenLocal = await localStorage.getItem('Access_token');
+    const tokenSession = await sessionStorage.getItem('Access_token');
+    if (!tokenLocal && !tokenSession) {
+      this.props.navigate("/");
+    }
   }
 
   private getListBook = async () => {

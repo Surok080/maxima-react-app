@@ -9,15 +9,21 @@ export default class BookModel {
   }
 
   async getListBook() {
-    const accessToken: any = localStorage.getItem('Access_token');
-    const parseToken: string | null = JSON.parse(accessToken);
+    let accessToken: any = localStorage.getItem('Access_token');
+    if (!accessToken) {
+      accessToken = sessionStorage.getItem('Access_token');
+    }
+    const parseToken: string | null = await JSON.parse(accessToken);
     const urlAllBookUser = `${this.urlBackEnd}list`;
 
     return this.fetchRequest(urlAllBookUser, `Bearer ${parseToken}`);
   }
 
   async addBook(data: any) {
-    const accessToken: any = localStorage.getItem('Access_token');
+    let accessToken: any = localStorage.getItem('Access_token');
+    if (!accessToken) {
+      accessToken = sessionStorage.getItem('Access_token');
+    }
     const urlAddBook = `${this.urlBackEnd}add`;
     const parseToken: string | null = JSON.parse(accessToken);
 
@@ -25,7 +31,10 @@ export default class BookModel {
   }
 
   async deleteBook(id: string) {
-    const accessToken: any = localStorage.getItem('Access_token');
+    let accessToken: any = localStorage.getItem('Access_token');
+    if (!accessToken) {
+      accessToken = sessionStorage.getItem('Access_token');
+    }
     const parseToken: string | null = JSON.parse(accessToken);
     const urlDelBookUser = `${this.urlBackEnd}destroy/${id}`;
 
@@ -33,7 +42,10 @@ export default class BookModel {
   }
 
   async addFavoriteBook(id: string, toogle: any) {
-    const accessToken: any = localStorage.getItem('Access_token');
+    let accessToken: any = localStorage.getItem('Access_token');
+    if (!accessToken) {
+      accessToken = sessionStorage.getItem('Access_token');
+    }
     const parseToken: string | null = JSON.parse(accessToken);
     const urlDelBookUser = `${this.urlBackEnd}update/${id}?`;
     const data = {
@@ -45,7 +57,10 @@ export default class BookModel {
   }
 
   async getBookInfo() {
-    const accessToken: any = localStorage.getItem('Access_token');
+    let accessToken: any = localStorage.getItem('Access_token');
+    if (!accessToken) {
+      accessToken = sessionStorage.getItem('Access_token');
+    }
     const parseToken: string | null = JSON.parse(accessToken);
     const idBook: any = localStorage.getItem('id-book-info');
     const parseIdBook: string | null = JSON.parse(idBook);
