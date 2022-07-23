@@ -1,8 +1,7 @@
 import React from 'react';
 import { Input } from '../../../components/Input';
 import { ButtonView } from '../../../components/ButtonView';
-
-const icon = '../../img/icon.png';
+import { icon } from '../../img';
 
 interface Props {
   navigate: any,

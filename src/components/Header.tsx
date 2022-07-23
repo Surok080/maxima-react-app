@@ -1,6 +1,5 @@
 import React from 'react';
-import iconSearch from '../app/img/iconSearch.png';
-import iconDelete from '../app/img/iconDelete.png';
+import { iconDelete, iconSearch } from '../app/img';
 
 
 interface Props {
@@ -27,7 +26,7 @@ export default class Header extends React.Component<Props, IState> {
       >
 
         <div className='  mh-9 rounded overflow-hidden'>
-          {!this.props.type?  <form
+          {!this.props.type ? <form
             onSubmit={this.props.searchBook}
             className="flex bg-white "
           >

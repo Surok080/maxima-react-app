@@ -1,8 +1,8 @@
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
-import library from '../app/img/FooterNav/library.png';
-import favorit from '../app/img/FooterNav/favorit.png';
-import search from '../app/img/FooterNav/search.png';
+import { favorit, library, search } from '../app/img';
+
+
 
 export default class FooterNav extends Component {
   render() {
