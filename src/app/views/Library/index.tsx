@@ -35,7 +35,7 @@ export default class Library extends React.Component<Props>{
               {item.title}
             </div>
             <button
-              className={this.props.state.statusLoading ? 'libraryBook__button animateAddFavorite greenButton' : 'libraryBook__button greenButton'}
+              className={`libraryBook__button greenButton ${this.props.state.statusLoading ? 'animateAddFavorite ' : null}`}
               type="button"
               data-id={item.id}
               data-favorite={item.favorite}
@@ -44,7 +44,7 @@ export default class Library extends React.Component<Props>{
               F
             </button>
             <button
-              className={this.props.state.statusLoading ? 'libraryBook__button animateAddFavorite redButton' : 'libraryBook__button redButton'}
+              className={`libraryBook__button redButton ${this.props.state.statusLoading ? 'animateAddFavorite' : null}`}
               type="button"
               data-id={item.id}
               onClick={(e) => this.props.modalResult(e.target)}
@@ -52,7 +52,7 @@ export default class Library extends React.Component<Props>{
               D
             </button>
             <button
-              className={this.props.state.statusLoading ? 'libraryBook__button animateAddFavorite blueButton' : 'libraryBook__button blueButton'}
+              className={`libraryBook__button blueButton ${this.props.state.statusLoading ? 'animateAddFavorite' : null}`}
               type="button"
               data-id={item.id}
               data-favorite={item.favorite}
@@ -71,24 +71,24 @@ export default class Library extends React.Component<Props>{
         className="container"
       >
 
-          <Header type={true} title={'Library'} searchBook={this.props.searchBook} handleChange={this.props.handleChange} state={this.props.state} clearInput={this.props.clearInput} />
+        <Header type={true} title={'Library'} searchBook={this.props.searchBook} handleChange={this.props.handleChange} state={this.props.state} clearInput={this.props.clearInput} />
 
-          <main className='libraryBook'>
+        <main className='libraryBook'>
 
-            {!this.props.state.bookListUser.status ? <ReactLoading type='balls' color='#5C426C' height='100%' width='100%' /> : bookList}
+          {!this.props.state.bookListUser.status ? <ReactLoading type='balls' color='#5C426C' height='100%' width='100%' /> : bookList}
 
-            {this.props.state.modal ? (
-              <ModalView
-                actionBook={this.props.deleteBook}
-                toogleModal={this.props.toogleModal}
-                title={'Delete book'}
-                textModal={'Are you sure you want to delete this book?'}
-              />
-            ) : null}
+          {this.props.state.modal ? (
+            <ModalView
+              actionBook={this.props.deleteBook}
+              toogleModal={this.props.toogleModal}
+              title={'Delete book'}
+              textModal={'Are you sure you want to delete this book?'}
+            />
+          ) : null}
 
-          </main>
+        </main>
 
-          <FooterNav />
+        <FooterNav />
       </div>
     );
   }

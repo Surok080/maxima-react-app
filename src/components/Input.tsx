@@ -1,4 +1,5 @@
 import React from 'react';
+import '../app/style/style.scss';
 
 interface Props {
   input: any,
@@ -16,7 +17,7 @@ export class Input extends React.Component<Props> {
     return (
       <input
         type={this.props.type}
-        className=' mb-5 p-1 border-b border-black'
+        className='input'
         onChange={(e) => this.handleChange(e, this.props.name)}
         value={this.props.dataState}
         placeholder={this.props.placeholder}

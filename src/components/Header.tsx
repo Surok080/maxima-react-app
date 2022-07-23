@@ -1,6 +1,6 @@
 import React from 'react';
 import { iconDelete, iconSearch } from '../app/img';
-
+import '../app/style/style.scss';
 
 interface Props {
   searchBook: any,
@@ -22,36 +22,36 @@ export default class Header extends React.Component<Props, IState> {
   render() {
     return (
       <div
-        className=" bg-slate-900 h-16 p-3 flex-grow-0 flex-shrink-0 basis-auto"
+        className="header"
       >
 
-        <div className='  mh-9 rounded overflow-hidden'>
+        <div className='header__items'>
           {!this.props.type ? <form
             onSubmit={this.props.searchBook}
-            className="flex bg-white "
+            className="header__form"
           >
             <button
-              className=" p-2"
+              className="p-2"
               type="button"
               onClick={this.props.searchBook}
             >
               <img src={iconSearch} alt="search" />
             </button>
             <input
-              className="p-2 w-full h-full focus:outline-none"
+              className="header__form-input"
               placeholder="API"
               type="text"
               onChange={(e) => this.props.handleChange(e.target.value)}
               value={this.props.state.nameBook}
             />
             <button
-              className=" p-2 focus:outline-none"
+              className="header__form-button"
               type="button"
               onClick={this.props.clearInput}
             >
               <img src={iconDelete} alt="search" />
             </button>
-          </form> : <h3 className='text-white text-center font-bold text-lg'>{this.props.title}</h3>}
+          </form> : <h3 className='header__title'>{this.props.title}</h3>}
         </div>
       </div>
     );

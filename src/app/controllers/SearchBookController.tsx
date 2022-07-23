@@ -94,6 +94,13 @@ export default class SearchBookController extends React.Component<Props
       addBookError: statusAddBook.status,
       addBookcomplete: statusAddBook.status
     });
+
+    setTimeout(() => {
+      this.setState({
+        addBookError: true,
+        addBookcomplete: false
+      });
+    }, 5000);
   };
 
   render() {

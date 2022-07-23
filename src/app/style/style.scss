@@ -3,8 +3,9 @@
 $green: #5fbb5e;
 $red: rgb(239 68 68);
 $blue: rgb(59 130 246);
+$sky: rgb(12 74 110);
 $itemBook: #bbd2ff;
-
+$fons: rgb(60, 82, 170);
 
 .container {
   background-color: #fff;
@@ -75,19 +76,23 @@ $itemBook: #bbd2ff;
   }
 }
 
-.greenButton{
-  background-color: $green !important; 
+.greenButton {
+  background-color: $green  !important;
 }
 
-.redButton{
-  background-color: $red !important; 
+.redButton {
+  background-color: $red  !important;
 }
 
-.blueButton{
-  background-color: $blue !important; 
+.blueButton {
+  background-color: $blue  !important;
 }
 
-.animateAddFavorite{
+.skyButton {
+  background-color: $sky  !important;
+}
+
+.animateAddFavorite {
   animation: spin 1s linear infinite;
 }
 
@@ -103,4 +108,298 @@ $itemBook: #bbd2ff;
 
 .favoriteBookLibrary {
   border-color: $green;
+}
+
+.footerNav {
+  flex: 0 0 auto;
+
+  &__items {
+    display: flex;
+    background-color: #E5E7EB;
+    justify-content: space-around;
+    align-items: center;
+    height: 3.5rem;
+  }
+}
+
+.header {
+  padding: 0.75rem;
+  flex-grow: 0;
+  flex-shrink: 0;
+  height: 4rem;
+  background-color: $fons;
+
+  &__items {
+    overflow: hidden;
+    border-radius: 0.25rem;
+    max-height: 2.25rem;
+  }
+
+  &__form {
+    display: flex;
+    background: #fff;
+
+    &-input {
+      padding: 0.5rem;
+      width: 100%;
+      height: 100%;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    &-button {
+      padding: 8px;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  &__title {
+    color: #ffffff;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 5px;
+  }
+
+}
+
+.input {
+  padding: 0.25rem;
+  margin-bottom: 1.25rem;
+  border-bottom-width: 1px;
+  border-color: #000000;
+}
+
+.modalView {
+  display: flex;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 50;
+  justify-content: center;
+  align-items: center;
+  outline: 0;
+  background: rgba(40, 40, 40, 0.5);
+
+  &__content {
+    position: relative;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    width: auto;
+    max-width: 48rem;
+  }
+
+  &__window {
+    display: flex;
+    position: relative;
+    background-color: #ffffff;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 0.5rem;
+    border-width: 0;
+    outline: 0;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  &__window-header {
+    display: flex;
+    padding: 1.25rem;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+    border-bottom-width: 1px;
+    border-color: #D1D5DB;
+    border-style: solid;
+  }
+
+  &__button-close {
+    float: right;
+    background-color: transparent;
+    color: #000000;
+    border-width: 0;
+    transition: all .2s linear;
+
+    &:hover {
+      transform: scale(1.1, 1.1);
+    }
+  }
+
+  &__button-item {
+    display: block;
+    padding-top: 0;
+    padding-bottom: 0;
+    color: #000000;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 9999px;
+  }
+
+  &__window-main {
+    position: relative;
+    padding: 24px;
+    flex: 1 1 auto;
+  }
+
+  &__window-footer {
+    display: flex;
+    padding: 1.5rem;
+    justify-content: flex-end;
+    align-items: center;
+    border-bottom-right-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+    border-top-width: 1px;
+    border-style: solid;
+  }
+
+  &__button-apply {
+    padding: 0.25rem 1.5rem 0.25rem 1.5rem;
+    margin-bottom: 0.25rem;
+    margin-right: 1.5rem;
+    background-color: $blue  !important;
+    color: #ffffff;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 0.25rem;
+    outline: 0;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    transition: all .2s linear;
+
+    &:hover {
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  &__button-reject {
+    margin-right: 0.25rem;
+    margin-bottom: 0.25rem;
+    background-color: $red  !important;
+  }
+}
+
+.login {
+  position: relative;
+  padding: 1.75rem 2.75rem 0;
+  flex: 1 1 0%;
+  height: 100%;
+  height: 100vh;
+
+  &__title {
+    margin-top: 11rem;
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+    font-weight: 400;
+    text-align: left;
+  }
+
+  &__form {
+    display: flex;
+    margin-top: 3rem;
+    flex-direction: column;
+  }
+
+  &__button {
+    padding: 12px;
+    border-radius: 4px;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+}
+
+.errorAuthoraze {
+  display: flex;
+  position: absolute;
+  right: 0;
+  left: 0;
+  margin: auto;
+  top: 1.75rem;
+  padding: 0.75rem;
+  background-color: $red  !important;
+  color: #ffffff;
+  width: 80%;
+  max-width: 20rem;
+  border-radius: 5px;
+  box-shadow: .5px .5px 30px rgba(0, 0, 0, 0.6);
+
+  &__image {
+    object-fit: contain;
+    margin-right: 12px;
+  }
+}
+
+.registration {
+  position: relative;
+  padding: 1.75rem 2.75rem 0;
+  height: 100vh;
+
+  &__title {
+    margin-top: 11rem;
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+    font-weight: 400;
+    text-align: left;
+  }
+
+  &__form {
+    display: flex;
+    margin-top: 3rem;
+    flex-direction: column;
+  }
+
+  &__button {
+    padding: 12px;
+    border-radius: 4px;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+}
+
+.search {
+
+  &__main {
+    flex: 1 0 auto;
+    padding: 1px;
+  }
+
+  &__items {
+    display: flex;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1px;
+    justify-content: space-between;
+    width: 100%;
+    border-width: 1px;
+    border-left-width: 4px;
+    border-color: #D1D5DB;
+    cursor: pointer;
+    transition: all .2s linear;
+
+    &:active {
+      border-color: $green  !important;
+    }
+  }
+
+  &__item {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    background-color: $green  !important;
+    color: #ffffff;
+    font-weight: 600;
+    border-radius: 0.5rem;
+  }
 }

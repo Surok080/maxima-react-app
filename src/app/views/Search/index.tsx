@@ -4,6 +4,7 @@ import Header from '../../../components/Header';
 import ReactLoading from 'react-loading';
 import { ModalView } from '../../../components/ModalView';
 import Alert from '@mui/material/Alert';
+import '../../style/style.scss';
 
 interface Props {
   searchBook: any,
@@ -23,7 +24,8 @@ export default class Search extends React.Component<Props>{
 
     if (this.props.state.bookList.totalItems) {
       bookList = itemsBook.map((item: any, key: any) => {
-        return <div key={key} className='flex w-full bg-slate-200 px-5 py-3 justify-between border-l-4 border-gray-300 active:border-green-500 border mb-px'>
+        console.log(item);
+        return <div key={key} className={`search__items`}>
           <div>
             {key}
           </div>
@@ -31,7 +33,7 @@ export default class Search extends React.Component<Props>{
             {item.volumeInfo.title}
           </div>
           <button
-            className={this.props.state.statusLoading ? 'py-1 px-6 bg-green-500 rounded-lg text-white font-semibold animate-pulse' : 'py-1 px-6 bg-green-500 rounded-lg text-white font-semibold'}
+            className={`search__item ${this.props.state.statusLoading ? 'animate-pulse' : null}`}
             type="button"
             data-title={item.volumeInfo.title}
             data-authors={item.volumeInfo.authors}
@@ -45,10 +47,8 @@ export default class Search extends React.Component<Props>{
       });
     }
     return (
-      <div
-        className="bg-slate-200 h-screen"
-      >
-        <div className='flex flex-col h-full'>
+
+        <div className='container'>
           <Header title={'Search'} type={false} searchBook={this.props.searchBook} handleChange={this.props.handleChange} state={this.props.state} clearInput={this.props.clearInput} />
           {!this.props.state.addBookError ?
             <Alert variant="filled" severity="error">
@@ -61,7 +61,7 @@ export default class Search extends React.Component<Props>{
           </Alert> :
             null}
 
-          <main className=' flex-grow flex-shrink-0 basis-auto p-px'>
+          <main className='search__main'>
             {bookList}
             {this.props.state.statusLoading ? <ReactLoading type='balls' color='#5C426C' height='100%' width='100%' /> : ''}
           </main>
@@ -76,7 +76,6 @@ export default class Search extends React.Component<Props>{
           ) : null}
           <FooterNav />
         </div>
-      </div>
     );
   }
 }
