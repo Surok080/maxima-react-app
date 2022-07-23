@@ -1,14 +1,16 @@
 import React from 'react';
 import View from '../views/Settings/index';
 import { connect } from 'react-redux';
-import { user } from '../redux/actionTypes';
-import { slaiderContent } from '../redux/actionTypes';
+import { slaiderContent, toogleThema } from '../redux/actionTypes';
 
 interface Props {
   viewModel: any,
   navigate: any,
   url: any,
-  slaiderContent:any,
+  user: any,
+  them: any,
+  slaiderContent: any,
+  toogleThema: any,
 }
 
 interface IState {
@@ -16,6 +18,7 @@ interface IState {
   bookName: string,
   bookAuthors: string,
   bookText: string,
+  radio: any,
 }
 
 class SettingsController extends React.Component<Props, IState> {
@@ -25,12 +28,13 @@ class SettingsController extends React.Component<Props, IState> {
     bookName: '',
     bookAuthors: '',
     bookText: '',
+    radio: 'a',
   };
 
   componentDidMount() {
-    this.props.slaiderContent(1111111111);
     this.getAccount();
-    console.log(this.props.url);
+    this.setState({radio: this.props.them})
+    console.log(this.props.them);
   }
 
   private getAccount = async () => {
@@ -53,6 +57,14 @@ class SettingsController extends React.Component<Props, IState> {
     console.log('test');
   };
 
+  radioToggle = (e:any) => {
+    this.setState({ radio : e.target.value});
+    this.props.toogleThema(e.target.value);
+    this.props.slaiderContent(e.target.value);
+    console.log(this.props.url);
+    console.log(this.props.them);
+  };
+
   render() {
 
     return (
@@ -61,6 +73,7 @@ class SettingsController extends React.Component<Props, IState> {
         handleChange={this.handleChange}
         clearInput={this.clearInput}
         state={this.state}
+        radioToggle={this.radioToggle}
       />
     );
   }
@@ -69,12 +82,15 @@ class SettingsController extends React.Component<Props, IState> {
 const mapStateToProps = (state: any) => {
   return {
     url: state.urlArray,
+    user: state.user,
+    them: state.them,
   }
 }
 
 const mapDispatchToProps = () => {
   return {
-    slaiderContent
+    slaiderContent,
+    toogleThema
   }
 }
 

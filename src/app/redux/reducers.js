@@ -1,6 +1,6 @@
-import { REGISTRATION_USER} from "./actions";
+import { REGISTRATION_USER, THEMA} from "./actions";
 import { defaultState } from "./initialState";
-import { defaultState2 } from "./initialState";
+
 
 const userReducer = (state = defaultState, action) => {
   switch (action.type) {
@@ -31,7 +31,19 @@ const urlReducer = (state = 123213, action) => {
   }
 };
 
+const themReducer = (state = 'a', action) => {
+  switch (action.type) {
+    case THEMA:
+      localStorage.setItem('them', JSON.stringify(action.them));
+      return state = action.them;
 
-export { userReducer, urlReducer };
+    default:
+      return state;
+  }
+};
+
+
+
+export { userReducer, urlReducer, themReducer };
 // export { counterReducer, urlReducer};
 

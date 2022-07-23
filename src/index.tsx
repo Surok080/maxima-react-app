@@ -4,6 +4,9 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import redux from './app/redux';
 
 
 // const models = new Models();
@@ -11,11 +14,14 @@ import './index.css';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+const store = createStore(redux)
 
 root.render(
   <React.StrictMode>
     <BrowserRouter basename={'/maxima-react-app'}>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </BrowserRouter>
   </React.StrictMode>
 );

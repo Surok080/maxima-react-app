@@ -1,4 +1,5 @@
 import { REGISTRATION_USER } from "./actions"
+import { THEMA } from "./actions"
 
 export const user = (user) => {
   return {
@@ -20,5 +21,11 @@ export const slaiderContent = (urlArray) => {
   return {
     type: URL,
     urlArray: urlArray,
+  }
+}
+export const toogleThema = (them) => {
+  return {
+    type: THEMA,
+    them: them,
   }
 }

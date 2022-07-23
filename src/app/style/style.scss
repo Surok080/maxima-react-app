@@ -13,6 +13,12 @@ $fons: rgb(60, 82, 170);
   height: 100vh;
   display: flex;
   flex-direction: column;
+  transition: all .2s linear;
+}
+
+.bgThemaDark{
+  background-color: rgb(38, 38, 38);
+  color: #dde8ff;
 }
 
 .infoBook {
