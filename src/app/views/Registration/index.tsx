@@ -21,7 +21,7 @@ export default class RegistrationView extends React.Component<Props>{
         {this.props.state.errorReg ? <div className='bg-red-700 w-4/5 max-w-xs m-auto absolute top-7 left-0 right-0 p-3 flex text-white'>
           <img className='object-contain mr-3' src={icon} alt="" />
           {this.props.state.alerMessage}
-        </div> : ''}
+        </div> : null}
         <h1 className=" text-4xl font-normal font-encode mt-32 text-left">
           Registration
         </h1>

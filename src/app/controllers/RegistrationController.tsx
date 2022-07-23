@@ -23,20 +23,21 @@ export default class RegistrationController extends React.Component<Props, IStat
     password_confirmation: "",
     status: true,
     errorReg: false,
-    alerMessage: '',
+    alerMessage: 'problem',
   };
 
   private handleChange = (value: string, nameState: string) => {
     this.setState({
       [nameState]: value,
       errorReg: false,
-      alerMessage: '',
+      alerMessage: 'problem',
     } as Pick<IState, keyof IState>);
   };
 
   private handleSubmit = (e: any) => {
     const urlReg = 'https://internsapi.public.osora.ru/api/auth/signup';
     const regExpEmail = /\S+@\S+\.\S+/;
+
 
     e.preventDefault();
     this.setState({
@@ -45,24 +46,20 @@ export default class RegistrationController extends React.Component<Props, IStat
       alerMessage: '',
     });
 
-    if (!this.state.username) {
-      this.setState({
-        alerMessage: 'ERROR-userName',
-        errorReg: true,
-      });
-      this.erorRegistration();
+    if (!this.state.username || !(/[a-zA-Z]/.test(this.state.username)) || this.state.username.length < 3) {
+      this.errorRegistration('ERROR-userName. Имя должно быть больше 3-х сиволов и не латиницей');
       return;
     }
     if (!regExpEmail.test(this.state.email)) {
-      this.erorRegistration();
+      this.errorRegistration('ERROR-email');
       return;
     }
-    if (!this.state.password) {
-      this.erorRegistration();
+    if (!this.state.password || this.state.password.length > 3 || (this.state.password.toLocaleLowerCase() === this.state.password)) {
+      this.errorRegistration('ERROR-password. Должна быть хоть одна заглавная и больше 3-х символов');
       return;
     }
     if (!(this.state.password === this.state.password_confirmation)) {
-      this.erorRegistration();
+      this.errorRegistration('ERROR-password. Пароли не совпадают');
       return;
     }
 
@@ -84,7 +81,7 @@ export default class RegistrationController extends React.Component<Props, IStat
           this.goToLogin();
         } else {
           const error = data.errors[Object.keys(data.errors)[0]];
-          this.erorRegistration();
+          this.errorRegistration();
           this.setState({
             alerMessage: error[Object.keys(error)[0]],
             errorReg: true
@@ -93,13 +90,15 @@ export default class RegistrationController extends React.Component<Props, IStat
       });
   };
 
-  private erorRegistration = () => {
+  private errorRegistration = (textError = 'error registration') => {
     this.setState({
       status: true,
       username: '',
       email: '',
       password: '',
       password_confirmation: '',
+      errorReg: true,
+      alerMessage: textError,
     });
   };
 
