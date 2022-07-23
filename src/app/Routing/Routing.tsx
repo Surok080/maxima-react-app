@@ -1,5 +1,5 @@
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import { Registration, Login, } from '../providers';
+import { Registration, Login, SearchBook, LibraryBook, InfoBook } from '../providers';
 
 
 
@@ -18,6 +18,26 @@ function Routing() {
         path='/registration'
         element={<Registration
           navigate={navigate}
+        />} />
+      <Route
+        path='/search'
+        element={<SearchBook
+        />} />
+      <Route
+        path='/library'
+        element={<LibraryBook
+          favorite={true}
+          navigate={navigate}
+        />} />
+      <Route
+        path='/favorite'
+        element={<LibraryBook
+          favorite={false}
+          navigate={navigate}
+        />} />
+      <Route
+        path='/info'
+        element={<InfoBook
         />} />
     </Routes>
   );

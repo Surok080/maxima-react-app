@@ -24,9 +24,11 @@ export default class LoginController extends React.Component<Props, IState> {
   };
 
   private handleChange = (value: string, nameState: string) => {
-    this.setState({ [nameState]: value } as Pick<IState, keyof IState>);
-    this.setState({ errorReg: false });
-    this.setState({ alerMessage: '' });
+    this.setState({ 
+      [nameState]: value,
+      errorReg: false,
+      alerMessage: '',
+    } as Pick<IState, keyof IState>);
   };
 
   private handleSubmit = (e: any) => {
@@ -34,14 +36,18 @@ export default class LoginController extends React.Component<Props, IState> {
     const urlLog = 'https://internsapi.public.osora.ru/api/auth/login';
 
     e.preventDefault();
-    this.setState({ status: false });
-    this.setState({ errorReg: false });
-    this.setState({ alerMessage: '' });
+    this.setState({ 
+      status: false,
+      errorReg: false,
+      alerMessage: ''
+    });
 
     if (!regExpEmail.test(this.state.email)) {
       this.loginReg();
-      this.setState({ alerMessage: 'ERROR-email' });
-      this.setState({ errorReg: true });
+      this.setState({ 
+        alerMessage: 'ERROR-email',
+        errorReg: true
+      });
       return;
     }
 
@@ -60,13 +66,14 @@ export default class LoginController extends React.Component<Props, IState> {
       .then((data) => {
         if (data.status) {
           this.setState({ status: true });
-          this.props.navigate("/");
-          alert('Вы залогинились')
+          this.props.navigate("/search");
           localStorage.setItem('Access_token', JSON.stringify(data.data.access_token));
         } else {
           this.loginReg();
-          this.setState({ alerMessage: data.errors });
-          this.setState({ errorReg: true });
+          this.setState({ 
+            alerMessage: data.errors,
+            errorReg: true
+          });
         }
       });
   };
@@ -80,9 +87,11 @@ export default class LoginController extends React.Component<Props, IState> {
   };
 
   private loginReg = () => {
-    this.setState({ status: true });
-    this.setState({ email: '' });
-    this.setState({ password: '' });
+    this.setState({ 
+      status: true,
+      email: '',
+      password: '',
+    });
   };
 
   goToRegistration = () => {

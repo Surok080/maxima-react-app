@@ -27,9 +27,11 @@ export default class RegistrationController extends React.Component<Props, IStat
   };
 
   private handleChange = (value: string, nameState: string) => {
-    this.setState({ [nameState]: value } as Pick<IState, keyof IState>);
-    this.setState({ errorReg: false });
-    this.setState({ alerMessage: '' });
+    this.setState({
+      [nameState]: value,
+      errorReg: false,
+      alerMessage: '',
+    } as Pick<IState, keyof IState>);
   };
 
   private handleSubmit = (e: any) => {
@@ -37,13 +39,17 @@ export default class RegistrationController extends React.Component<Props, IStat
     const regExpEmail = /\S+@\S+\.\S+/;
 
     e.preventDefault();
-    this.setState({ status: false });
-    this.setState({ errorReg: false });
-    this.setState({ alerMessage: '' });
+    this.setState({
+      status: false,
+      errorReg: false,
+      alerMessage: '',
+    });
 
     if (!this.state.username) {
-      this.setState({ alerMessage: 'ERROR-userName' });
-      this.setState({ errorReg: true });
+      this.setState({
+        alerMessage: 'ERROR-userName',
+        errorReg: true,
+      });
       this.erorRegistration();
       return;
     }
@@ -79,18 +85,22 @@ export default class RegistrationController extends React.Component<Props, IStat
         } else {
           const error = data.errors[Object.keys(data.errors)[0]];
           this.erorRegistration();
-          this.setState({ alerMessage: error[Object.keys(error)[0]] });
-          this.setState({ errorReg: true });
+          this.setState({
+            alerMessage: error[Object.keys(error)[0]],
+            errorReg: true
+          });
         }
       });
   };
 
   private erorRegistration = () => {
-    this.setState({ status: true });
-    this.setState({ username: '' });
-    this.setState({ email: '' });
-    this.setState({ password: '' });
-    this.setState({ password_confirmation: '' });
+    this.setState({
+      status: true,
+      username: '',
+      email: '',
+      password: '',
+      password_confirmation: '',
+    });
   };
 
   private goToLogin = () => {
