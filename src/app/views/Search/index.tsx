@@ -84,11 +84,11 @@ class Search extends React.Component<Props>{
             textModal={'Are you sure you want to add this book?'}
           />
         ) : null}
-        <div style={{width:'100%', padding:10,  background: 'white'}}>
+        <div style={{width:'100%', padding:10,  background: 'white', opacity: 0.9}}>
           <FormControl fullWidth
             sx={{ background: 'white' }}
           >
-            <InputLabel id="demo-simple-select-label">Age</InputLabel>
+            <InputLabel id="demo-simple-select-label">Category</InputLabel>
             <Select
 
               labelId="demo-simple-select-label"

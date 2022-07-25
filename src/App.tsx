@@ -19,8 +19,10 @@ class App extends React.Component<Props> {
 
   private getThemLocal = async () => {
     let themLocal = await localStorage.getItem('them');
-    themLocal = JSON.parse(`${themLocal}`);
-    this.props.toogleThema(themLocal);
+    if (themLocal) {
+      themLocal = JSON.parse(`${themLocal}`);
+      this.props.toogleThema(themLocal);
+    }
   }
 
   render() {

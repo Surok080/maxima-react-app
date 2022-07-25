@@ -4,7 +4,7 @@ export default class BookModel {
 
   async searchBook(data: string | any, category: string) {
     if (!data) {
-      data = `startIndex=${Math.floor(Math.random() * 10)}&`;
+      data = `startIndex=${Math.floor(Math.random() * 100)}&`;
     }
 
     if (category) {

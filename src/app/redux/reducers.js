@@ -1,35 +1,4 @@
-import { REGISTRATION_USER, THEMA} from "./actions";
-import { defaultState } from "./initialState";
-
-
-const userReducer = (state = defaultState, action) => {
-  switch (action.type) {
-    case REGISTRATION_USER:
-      return Object.assign({},state, {
-        nameUser: action.name,
-        emailUser: action.email,
-        passwordUser: action.password,
-      });
-
-    // case OFFSET:
-    //   return Object.assign({},state, {
-    //     offset: action.offset
-    //   });
-
-    default:
-      return state;
-  }
-};
-
-const urlReducer = (state = 123213, action) => {
-  switch (action.type) {
-    case URL:
-      return state = action.urlArray;
-
-    default:
-      return state;
-  }
-};
+import { THEMA} from "./actions";
 
 const themReducer = (state = 'light', action) => {
   switch (action.type) {
@@ -42,8 +11,6 @@ const themReducer = (state = 'light', action) => {
   }
 };
 
+export {  themReducer };
 
-
-export { userReducer, urlReducer, themReducer };
-// export { counterReducer, urlReducer};
 

@@ -184,7 +184,10 @@ $fons: rgb(60, 82, 170);
   margin-bottom: 1.25rem;
   border-bottom-width: 1px;
   border-color: #000000;
-  border-radius: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
 }
 
 .modalView {
