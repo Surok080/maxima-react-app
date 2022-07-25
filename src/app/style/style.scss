@@ -16,11 +16,6 @@ $fons: rgb(60, 82, 170);
   transition: all .2s linear;
 }
 
-.bgThemaDark{
-  background-color: rgb(38, 38, 38);
-  color: #dde8ff;
-}
-
 .infoBook {
   max-height: 100%;
   padding: 10px;
@@ -40,6 +35,7 @@ $fons: rgb(60, 82, 170);
     background-color: $itemBook;
     border-radius: 16px;
     display: inline-block;
+    color: #000;
   }
 
   &__bookText {
@@ -52,7 +48,7 @@ $fons: rgb(60, 82, 170);
 
 .libraryBook {
   flex: 1 0 auto;
-  padding: 1px;
+  padding: 2px;
 
   &__item {
     display: flex;
@@ -127,6 +123,11 @@ $fons: rgb(60, 82, 170);
     align-items: center;
     height: 3.5rem;
   }
+
+  &__item {
+    width: 30px;
+    height: 30px;
+  }
 }
 
 .header {
@@ -135,6 +136,7 @@ $fons: rgb(60, 82, 170);
   flex-shrink: 0;
   height: 4rem;
   background-color: $fons;
+  transition: all .2s linear;
 
   &__items {
     overflow: hidden;
@@ -150,6 +152,7 @@ $fons: rgb(60, 82, 170);
       padding: 0.5rem;
       width: 100%;
       height: 100%;
+      margin: 1px;
 
       &:focus {
         outline: none;
@@ -177,10 +180,11 @@ $fons: rgb(60, 82, 170);
 }
 
 .input {
-  padding: 0.25rem;
+  padding: 0.5rem 0.5rem;
   margin-bottom: 1.25rem;
   border-bottom-width: 1px;
   border-color: #000000;
+  border-radius: 5px;
 }
 
 .modalView {
@@ -197,6 +201,7 @@ $fons: rgb(60, 82, 170);
   align-items: center;
   outline: 0;
   background: rgba(40, 40, 40, 0.5);
+
 
   &__content {
     position: relative;
@@ -215,7 +220,7 @@ $fons: rgb(60, 82, 170);
     border-radius: 0.5rem;
     border-width: 0;
     outline: 0;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 20px 1px rgba(255, 255, 255, 0.437), 0 1px 2px 0 rgba(255, 255, 255, 0.409);
   }
 
   &__window-header {
@@ -409,4 +414,19 @@ $fons: rgb(60, 82, 170);
     font-weight: 600;
     border-radius: 0.5rem;
   }
+}
+
+.backgroundDark {
+  background-color: rgb(38, 38, 38);
+  color: #dde8ff;
+}
+
+.backgroundGrey {
+  background-color: rgb(85, 85, 85);
+  color: #dde8ff;
+}
+
+.backgroundLightGrey {
+  background-color: rgb(177, 177, 177);
+  color: #3a3a3a;
 }

@@ -2,8 +2,10 @@ import React from 'react';
 import FooterNav from '../../../components/FooterNav';
 import Header from '../../../components/Header';
 import ReactLoading from 'react-loading';
-import { ModalView } from '../../../components/ModalView';
+import ModalView from '../../../components/ModalView';
 import '../../style/style.scss';
+import { connect } from 'react-redux';
+import { Backdrop, CircularProgress } from '@mui/material';
 
 interface Props {
   searchBook: any,
@@ -16,18 +18,29 @@ interface Props {
   deleteBook: any,
   infoBook: any,
   favorite: boolean,
+  them: any,
 }
 
-export default class Library extends React.Component<Props>{
+interface IState {
+  searchTerm: any,
+  carList: any,
+}
+
+
+
+
+class Library extends React.Component<Props, IState>{
 
   render() {
-    const itemsBook = this.props.state?.bookListUser.data;
+    const itemsBook = this.props.state?.bookListUser;
     let bookList = '';
 
-    if (this.props.state.bookListUser.status) {
+    if (this.props.state.bookListUser) {
+
       bookList = itemsBook.map((item: any, key: any) => {
         if (this.props.favorite || (!this.props.favorite && item.favorite)) {
-          return (<div key={key} className={!item.favorite ? 'libraryBook__item' : 'libraryBook__item favoriteBookLibrary'} >
+          return (<div key={key} className={`${!item.favorite ? 'libraryBook__item' : 'libraryBook__item favoriteBookLibrary'} ${this.props.them === 'dark' ? 'backgroundLightGrey' : null}`} >
+
             <div>
               {key}
             </div>
@@ -35,7 +48,7 @@ export default class Library extends React.Component<Props>{
               {item.title}
             </div>
             <button
-              className={`libraryBook__button greenButton ${this.props.state.statusLoading ? 'animateAddFavorite ' : null}`}
+              className={`libraryBook__button greenButton`}
               type="button"
               data-id={item.id}
               data-favorite={item.favorite}
@@ -44,7 +57,7 @@ export default class Library extends React.Component<Props>{
               F
             </button>
             <button
-              className={`libraryBook__button redButton ${this.props.state.statusLoading ? 'animateAddFavorite' : null}`}
+              className={`libraryBook__button redButton`}
               type="button"
               data-id={item.id}
               onClick={(e) => this.props.modalResult(e.target)}
@@ -52,7 +65,7 @@ export default class Library extends React.Component<Props>{
               D
             </button>
             <button
-              className={`libraryBook__button blueButton ${this.props.state.statusLoading ? 'animateAddFavorite' : null}`}
+              className={`libraryBook__button blueButton`}
               type="button"
               data-id={item.id}
               data-favorite={item.favorite}
@@ -60,6 +73,7 @@ export default class Library extends React.Component<Props>{
             >
               I
             </button>
+
           </div>);
         }
         return null;
@@ -68,14 +82,14 @@ export default class Library extends React.Component<Props>{
 
     return (
       <div
-        className="container"
+        className={`container ${this.props.them === 'dark' ? 'backgroundDark' : null}`}
       >
 
-        <Header type={true} title={'Library'} searchBook={this.props.searchBook} handleChange={this.props.handleChange} state={this.props.state} clearInput={this.props.clearInput} />
+        <Header type={false} title={'Library'} searchBook={this.props.searchBook} handleChange={this.props.handleChange} state={this.props.state} clearInput={this.props.clearInput} />
 
         <main className='libraryBook'>
 
-          {!this.props.state.bookListUser.status ? <ReactLoading type='balls' color='#5C426C' height='100%' width='100%' /> : bookList}
+          {!this.props.state.bookListUser ? <ReactLoading type='balls' color='#5C426C' height='100%' width='100%' /> : bookList}
 
           {this.props.state.modal ? (
             <ModalView
@@ -85,7 +99,12 @@ export default class Library extends React.Component<Props>{
               textModal={'Are you sure you want to delete this book?'}
             />
           ) : null}
-
+          <Backdrop
+            sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+            open={this.props.state.statusLoading}
+          >
+            <CircularProgress color="inherit" />
+          </Backdrop>
         </main>
 
         <FooterNav />
@@ -93,3 +112,11 @@ export default class Library extends React.Component<Props>{
     );
   }
 }
+
+const mapStateToProps = (state: any) => {
+  return {
+    them: state.them,
+  }
+}
+
+export default connect(mapStateToProps)(Library)

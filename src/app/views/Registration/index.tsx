@@ -1,24 +1,25 @@
 import React from 'react';
-import { Input } from '../../../components/Input';
+import  Input from '../../../components/Input';
 import { ButtonView } from '../../../components/ButtonView';
 import { icon } from '../../img';
 import '../../style/style.scss';
-
+import { connect } from 'react-redux';
 
 interface Props {
   handleChange: any,
   handleSubmit: any,
   goToLogin: any,
   state: any,
+  them: any,
 }
 
 
-export default class RegistrationView extends React.Component<Props>{
+class RegistrationView extends React.Component<Props>{
 
   render() {
 
     return (
-      <div className='registration'>
+      <div className={`registration ${this.props.them === 'dark' ? 'backgroundDark' : null}`}>
         {this.props.state.errorReg ? <div className='errorAuthoraze'>
           <img className='errorAuthoraze__image' src={icon} alt="" />
           {this.props.state.alerMessage}
@@ -73,5 +74,10 @@ export default class RegistrationView extends React.Component<Props>{
   }
 }
 
+const mapStateToProps = (state: any) => {
+  return {
+    them: state.them,
+  }
+}
 
-
+export default connect(mapStateToProps)(RegistrationView)

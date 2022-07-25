@@ -7,8 +7,8 @@ export default class SearchViewModel {
     this.bookModel = new BookModel();
   }
 
-  async searchBook(data: string) {
-    const resultBookList = await this.bookModel.searchBook(data);
+  async searchBook(data: string, category: string) {
+    const resultBookList = await this.bookModel.searchBook(data, category);
     return resultBookList;
   }
 

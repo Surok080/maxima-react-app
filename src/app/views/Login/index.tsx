@@ -1,9 +1,10 @@
 import React from 'react';
-import { Input } from '../../../components/Input';
+import  Input  from '../../../components/Input';
 import { ButtonView } from '../../../components/ButtonView';
 import Checkbox from '@mui/material/Checkbox';
 import { icon } from '../../img';
 import '../../style/style.scss';
+import { connect } from 'react-redux';
 
 interface Props {
   navigate: any,
@@ -12,13 +13,14 @@ interface Props {
   handleChange: any,
   goToRegistration: any,
   state: any,
+  them: any,
 }
 
-export default class LoginView extends React.Component<Props>{
+class LoginView extends React.Component<Props>{
   render() {
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
     return (
-      <div className='login'>
+      <div className={`login ${this.props.them === 'dark' ? 'backgroundDark' : null}`}>
         {this.props.state.errorReg ? <div className='errorAuthoraze'>
           <img className='object-contain mr-3' src={icon} alt='' />
           {this.props.state.alerMessage}
@@ -44,7 +46,13 @@ export default class LoginView extends React.Component<Props>{
             input={this.props.handleChange}
           />
           <div>
-                        <Checkbox {...label}
+            <Checkbox {...label}
+              sx={{
+                color: `${this.props.them === 'dark' ? 'white' : 'black'}`,
+                '&.Mui-checked': {
+                  color: `${this.props.them === 'dark' ? 'orange' : 'black'}`,
+                },
+              }}
               defaultChecked={false}
               onChange={(e) => this.props.checkboxChange(e)
               }
@@ -68,3 +76,11 @@ export default class LoginView extends React.Component<Props>{
     );
   }
 }
+
+const mapStateToProps = (state: any) => {
+  return {
+    them: state.them,
+  }
+}
+
+export default connect(mapStateToProps)(LoginView)

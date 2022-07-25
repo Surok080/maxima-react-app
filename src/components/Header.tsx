@@ -1,6 +1,7 @@
 import React from 'react';
 import { iconDelete, iconSearch } from '../app/img';
 import '../app/style/style.scss';
+import { connect } from 'react-redux';
 
 interface Props {
   searchBook: any,
@@ -9,12 +10,13 @@ interface Props {
   clearInput: any,
   type: any,
   title: any,
+  them: any,
 }
 interface IState {
   nameBook: string,
 }
 
-export default class Header extends React.Component<Props, IState> {
+class Header extends React.Component<Props, IState> {
   state = {
     nameBook: "",
   };
@@ -22,7 +24,7 @@ export default class Header extends React.Component<Props, IState> {
   render() {
     return (
       <div
-        className="header"
+        className={`header ${this.props.them === 'light' ? null : 'backgroundGrey' }`}
       >
 
         <div className='header__items'>
@@ -38,7 +40,7 @@ export default class Header extends React.Component<Props, IState> {
               <img src={iconSearch} alt="search" />
             </button>
             <input
-              className="header__form-input"
+              className={`header__form-input ${this.props.them === 'light' ? null : ' text-black' }`}
               placeholder="API"
               type="text"
               onChange={(e) => this.props.handleChange(e.target.value)}
@@ -58,3 +60,10 @@ export default class Header extends React.Component<Props, IState> {
   }
 }
 
+const mapStateToProps = (state: any) => {
+  return {
+    them: state.them,
+  }
+}
+
+export default connect(mapStateToProps)(Header)

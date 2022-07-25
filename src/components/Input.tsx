@@ -1,5 +1,6 @@
 import React from 'react';
 import '../app/style/style.scss';
+import { connect } from 'react-redux';
 
 interface Props {
   input: any,
@@ -7,9 +8,9 @@ interface Props {
   placeholder: any,
   name: any,
   type: any,
+  them: any,
 }
-
-export class Input extends React.Component<Props> {
+class Input extends React.Component<Props> {
 
 
 
@@ -17,7 +18,7 @@ export class Input extends React.Component<Props> {
     return (
       <input
         type={this.props.type}
-        className='input'
+        className={`input ${this.props.them === 'dark' ? 'backgroundGrey' : null }`}
         onChange={(e) => this.handleChange(e, this.props.name)}
         value={this.props.dataState}
         placeholder={this.props.placeholder}
@@ -30,3 +31,11 @@ export class Input extends React.Component<Props> {
   };
 
 }
+
+const mapStateToProps = (state: any) => {
+  return {
+    them: state.them,
+  }
+}
+
+export default connect(mapStateToProps)(Input)

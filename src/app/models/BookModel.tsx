@@ -2,7 +2,14 @@ export default class BookModel {
 
   urlBackEnd = 'https://internsapi.public.osora.ru/api/book/';
 
-  async searchBook(data: string | null) {
+  async searchBook(data: string | any, category: string) {
+    if (!data) {
+      data = `startIndex=${Math.floor(Math.random() * 10)}&`;
+    }
+
+    if (category) {
+      data += `,subject=${category}`
+    }
     const urlLog = `https://www.googleapis.com/books/v1/volumes?q=${data}`;
 
     return this.fetchRequest(urlLog);

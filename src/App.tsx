@@ -11,8 +11,6 @@ interface Props {
   toogleThema: any,
 }
 
-// const store = createStore(redux)
-
 class App extends React.Component<Props> {
 
   componentDidMount() {
@@ -22,22 +20,12 @@ class App extends React.Component<Props> {
   private getThemLocal = async () => {
     let themLocal = await localStorage.getItem('them');
     themLocal = JSON.parse(`${themLocal}`);
-    // console.log(themLocal);
     this.props.toogleThema(themLocal);
-
-    // const tokenLocal = await localStorage.getItem('Access_token');
-    // const tokenSession = await sessionStorage.getItem('Access_token');
-    // if (tokenLocal || tokenSession) {
-    //   this.props.navigate("/search");
-    // }
   }
 
   render() {
-    console.log(this.props.them);
     return (
-      // <Provider store={store}>
       <Routing />
-      // </Provider>
     );
   }
 }

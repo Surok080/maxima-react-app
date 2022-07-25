@@ -15,6 +15,8 @@ interface IState {
   bookAdd: any,
   addBookError: boolean,
   addBookcomplete: boolean,
+  statusLoadingEasy: boolean,
+  select: number | string,
 }
 
 export default class SearchBookController extends React.Component<Props
@@ -24,16 +26,21 @@ export default class SearchBookController extends React.Component<Props
     nameBook: '',
     bookList: '',
     statusLoading: false,
+    statusLoadingEasy: false,
     modal: false,
     modalResult: false,
     bookAdd: '',
     addBookError: true,
     addBookcomplete: false,
+    select: '',
   };
 
   componentDidMount = () => {
+    this.searchBook(null);
     this.getAccount()
   }
+
+
 
   private getAccount = async () => {
     const tokenLocal = await localStorage.getItem('Access_token');
@@ -46,11 +53,12 @@ export default class SearchBookController extends React.Component<Props
   private searchBook = async (e: any) => {
     this.setState({
       addBookError: true,
-      addBookcomplete: false
+      addBookcomplete: false,
+      bookList: '',
     });
-    e.preventDefault();
+    e?.preventDefault();
     this.setState({ statusLoading: true });
-    const result = await this.props.viewModel.searchBook(this.state.nameBook);
+    const result = await this.props.viewModel.searchBook(this.state.nameBook, this.state.select);
     this.setState({
       bookList: result,
       statusLoading: false
@@ -86,6 +94,11 @@ export default class SearchBookController extends React.Component<Props
     });
   };
 
+  private select = async (e: any) => {
+    await this.setState({ select: e.target.value })
+    this.searchBook(null)
+  };
+
   private addBook = async () => {
     this.toogleModal();
 
@@ -98,12 +111,12 @@ export default class SearchBookController extends React.Component<Props
       uid: data.dataset.uid,
     };
 
-    this.setState({ statusLoading: true });
+    this.setState({ statusLoadingEasy: true });
     const statusAddBook = await this.props.viewModel.addBook(dataBook);
     this.setState({
       modalResult: false,
       bookAdd: '',
-      statusLoading: false,
+      statusLoadingEasy: false,
       addBookError: statusAddBook.status,
       addBookcomplete: statusAddBook.status
     });
@@ -117,10 +130,10 @@ export default class SearchBookController extends React.Component<Props
   };
 
   render() {
-
     return (
       <View
         searchBook={this.searchBook}
+        select={this.select}
         handleChange={this.handleChange}
         clearInput={this.clearInput}
         toogleModal={this.toogleModal}

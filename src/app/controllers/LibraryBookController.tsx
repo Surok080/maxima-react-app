@@ -12,6 +12,8 @@ interface IState {
   modal: boolean,
   bookDelId: object | string,
   statusLoading: boolean,
+  nameBook: string,
+  bookListUserAll: any,
 }
 
 export default class LibraryBookController extends React.Component<Props, IState> {
@@ -21,6 +23,8 @@ export default class LibraryBookController extends React.Component<Props, IState
     modal: false,
     bookDelId: '',
     statusLoading: false,
+    nameBook: '',
+    bookListUserAll: '',
   };
 
   componentDidMount() {
@@ -38,8 +42,9 @@ export default class LibraryBookController extends React.Component<Props, IState
 
   private getListBook = async () => {
     const result = await this.props.viewModel.getListBook();
-    this.setState({ 
-      bookListUser: result,
+    this.setState({
+      bookListUser: result.data,
+      bookListUserAll: result.data,
       statusLoading: false
     });
   };
@@ -55,7 +60,7 @@ export default class LibraryBookController extends React.Component<Props, IState
   };
 
   private modalResult = (data: any) => {
-    this.setState({ 
+    this.setState({
       modal: !this.state.modal,
       bookDelId: data,
     });
@@ -82,15 +87,40 @@ export default class LibraryBookController extends React.Component<Props, IState
   };
 
   searchBook = () => {
-    console.log('test');
+    const Debounce = setTimeout(() => {
+      const filteredBooks = this.filterBooks(this.state.nameBook, this.state?.bookListUser);
+      this.setState({ bookListUser: filteredBooks })
+    }, 300);
+    return () => clearTimeout(Debounce);
+
   };
 
-  handleChange = () => {
-    console.log('test');
+  private filterBooks = (searchText: string, listOfBooks: any) => {
+    if (!searchText) {
+      return this.state.bookListUserAll;
+    };
+    return listOfBooks.filter(({ title }) =>
+      title.toLowerCase().includes(searchText.toLowerCase())
+    );
+  }
+
+  handleChange = (e: string) => {
+    this.setState({
+      nameBook: e,
+    })
+
+    const Debounce = setTimeout(() => {
+      const filteredBooks = this.filterBooks(this.state.nameBook, this.state?.bookListUserAll);
+      this.setState({ bookListUser: filteredBooks })
+    }, 100);
+    return () => clearTimeout(Debounce);
   };
 
   clearInput = () => {
-    console.log('test');
+    this.setState({
+      nameBook: '',
+      bookListUser: this.state.bookListUserAll,
+    })
   };
 
   render() {

@@ -31,7 +31,7 @@ const urlReducer = (state = 123213, action) => {
   }
 };
 
-const themReducer = (state = 'a', action) => {
+const themReducer = (state = 'light', action) => {
   switch (action.type) {
     case THEMA:
       localStorage.setItem('them', JSON.stringify(action.them));

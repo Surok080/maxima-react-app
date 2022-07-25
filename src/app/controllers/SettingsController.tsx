@@ -1,15 +1,11 @@
 import React from 'react';
 import View from '../views/Settings/index';
 import { connect } from 'react-redux';
-import { slaiderContent, toogleThema } from '../redux/actionTypes';
+import { toogleThema } from '../redux/actionTypes';
 
 interface Props {
-  viewModel: any,
   navigate: any,
-  url: any,
-  user: any,
   them: any,
-  slaiderContent: any,
   toogleThema: any,
 }
 
@@ -28,13 +24,12 @@ class SettingsController extends React.Component<Props, IState> {
     bookName: '',
     bookAuthors: '',
     bookText: '',
-    radio: 'a',
+    radio: '',
   };
 
   componentDidMount() {
     this.getAccount();
-    this.setState({radio: this.props.them})
-    console.log(this.props.them);
+    this.setState({ radio: this.props.them })
   }
 
   private getAccount = async () => {
@@ -57,13 +52,18 @@ class SettingsController extends React.Component<Props, IState> {
     console.log('test');
   };
 
-  radioToggle = (e:any) => {
-    this.setState({ radio : e.target.value});
+  radioToggle = (e: any) => {
+    this.setState({ radio: e.target.value });
     this.props.toogleThema(e.target.value);
-    this.props.slaiderContent(e.target.value);
-    console.log(this.props.url);
-    console.log(this.props.them);
   };
+
+  goOut = () => {
+    localStorage.removeItem('Access_token');
+    sessionStorage.removeItem('Access_token');
+    this.props.navigate("/");
+  };
+
+
 
   render() {
 
@@ -74,6 +74,7 @@ class SettingsController extends React.Component<Props, IState> {
         clearInput={this.clearInput}
         state={this.state}
         radioToggle={this.radioToggle}
+        goOut={this.goOut}
       />
     );
   }
@@ -81,15 +82,12 @@ class SettingsController extends React.Component<Props, IState> {
 
 const mapStateToProps = (state: any) => {
   return {
-    url: state.urlArray,
-    user: state.user,
     them: state.them,
   }
 }
 
 const mapDispatchToProps = () => {
   return {
-    slaiderContent,
     toogleThema
   }
 }

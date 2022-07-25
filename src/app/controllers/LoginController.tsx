@@ -46,7 +46,6 @@ export default class LoginController extends React.Component<Props, IState> {
   };
 
   private checkboxChange = (e: any) => {
-    console.log(this.state.checked, 'test');
     this.setState({ checked: e.target.checked });
   };
 
