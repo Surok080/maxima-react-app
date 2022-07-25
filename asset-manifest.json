@@ -1,15 +1,17 @@
 {
   "files": {
-    "main.css": "/maxima-react-app/static/css/main.fc8d7074.css",
-    "main.js": "/maxima-react-app/static/js/main.06c9b12c.js",
-    "static/js/787.89703c6b.chunk.js": "/maxima-react-app/static/js/787.89703c6b.chunk.js",
+    "main.css": "/maxima-react-app/static/css/main.c1f654c0.css",
+    "main.js": "/maxima-react-app/static/js/main.391e47e9.js",
+    "static/media/setting.png": "/maxima-react-app/static/media/setting.7501c641c4c46bb9d6dd.png",
+    "static/media/library.png": "/maxima-react-app/static/media/library.0a53608aefa03f17339d.png",
+    "static/media/search.png": "/maxima-react-app/static/media/search.3a608aca6f4d314714c4.png",
+    "static/media/favorit.png": "/maxima-react-app/static/media/favorit.cf00610c4aee5d575d56.png",
     "index.html": "/maxima-react-app/index.html",
-    "main.fc8d7074.css.map": "/maxima-react-app/static/css/main.fc8d7074.css.map",
-    "main.06c9b12c.js.map": "/maxima-react-app/static/js/main.06c9b12c.js.map",
-    "787.89703c6b.chunk.js.map": "/maxima-react-app/static/js/787.89703c6b.chunk.js.map"
+    "main.c1f654c0.css.map": "/maxima-react-app/static/css/main.c1f654c0.css.map",
+    "main.391e47e9.js.map": "/maxima-react-app/static/js/main.391e47e9.js.map"
   },
   "entrypoints": [
-    "static/css/main.fc8d7074.css",
-    "static/js/main.06c9b12c.js"
+    "static/css/main.c1f654c0.css",
+    "static/js/main.391e47e9.js"
   ]
 }
