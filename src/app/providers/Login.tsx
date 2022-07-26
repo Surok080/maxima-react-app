@@ -1,7 +1,6 @@
 import React from 'react';
 import Controller from '../controllers/LoginController';
 
-
 interface Props {
   navigate: any
 }

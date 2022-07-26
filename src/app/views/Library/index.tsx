@@ -26,9 +26,6 @@ interface IState {
   carList: any,
 }
 
-
-
-
 class Library extends React.Component<Props, IState>{
 
   render() {
@@ -36,11 +33,9 @@ class Library extends React.Component<Props, IState>{
     let bookList = '';
 
     if (this.props.state.bookListUser) {
-
       bookList = itemsBook.map((item: any, key: any) => {
         if (this.props.favorite || (!this.props.favorite && item.favorite)) {
           return (<div key={key} className={`${!item.favorite ? 'libraryBook__item' : 'libraryBook__item favoriteBookLibrary'} ${this.props.them === 'dark' ? 'backgroundLightGrey' : null}`} >
-
             <div>
               {key}
             </div>
@@ -73,24 +68,18 @@ class Library extends React.Component<Props, IState>{
             >
               I
             </button>
-
           </div>);
         }
         return null;
       });
     }
-
     return (
       <div
         className={`container ${this.props.them === 'dark' ? 'backgroundDark' : null}`}
       >
-
         <Header type={false} title={'Library'} searchBook={this.props.searchBook} handleChange={this.props.handleChange} state={this.props.state} clearInput={this.props.clearInput} />
-
         <main className='libraryBook'>
-
           {!this.props.state.bookListUser ? <ReactLoading type='balls' color='#5C426C' height='100%' width='100%' /> : bookList}
-
           {this.props.state.modal ? (
             <ModalView
               actionBook={this.props.deleteBook}
@@ -106,7 +95,6 @@ class Library extends React.Component<Props, IState>{
             <CircularProgress color="inherit" />
           </Backdrop>
         </main>
-
         <FooterNav />
       </div>
     );

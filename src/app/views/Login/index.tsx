@@ -59,7 +59,6 @@ class LoginView extends React.Component<Props>{
             />
             Оставаться в системе
           </div>
-
           <ButtonView
             className={'login__button blueButton mt-12'}
             onClick={this.props.handleSubmit}

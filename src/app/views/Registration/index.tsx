@@ -13,7 +13,6 @@ interface Props {
   them: any,
 }
 
-
 class RegistrationView extends React.Component<Props>{
 
   render() {

@@ -1,7 +1,6 @@
 import React from 'react';
 import Controller from '../controllers/SettingsController';
 
-
 interface Props {
   navigate: any,
 }

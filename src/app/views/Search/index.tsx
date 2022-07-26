@@ -53,7 +53,6 @@ class Search extends React.Component<Props>{
 
       <div className={`container ${this.props.them === 'dark' ? 'backgroundDark' : null}`}>
         <Header title={'Search'} type={false} searchBook={this.props.searchBook} handleChange={this.props.handleChange} state={this.props.state} clearInput={this.props.clearInput} />
-
         {!this.props.state.addBookError ?
           <Alert variant="filled" severity="error">
             К сожалению данную книгу невозможно добавить в библиотеку
@@ -64,7 +63,6 @@ class Search extends React.Component<Props>{
             This is a success alert — check it out!
           </Alert> :
           null}
-
         <main className='search__main'>
           {bookList}
           {this.props.state.statusLoading ? <ReactLoading type='balls' color='#5C426C' height='100%' width='100%' /> : ''}
@@ -75,7 +73,6 @@ class Search extends React.Component<Props>{
             <CircularProgress color="inherit" />
           </Backdrop>
         </main>
-
         {this.props.state.modal ? (
           <ModalView
             actionBook={this.props.addBook}
@@ -84,19 +81,17 @@ class Search extends React.Component<Props>{
             textModal={'Are you sure you want to add this book?'}
           />
         ) : null}
-        <div style={{width:'100%', padding:10,  background: 'white', opacity: 0.9}}>
+        <div style={{ width: '100%', padding: 10, background: 'white', opacity: 0.9 }}>
           <FormControl fullWidth
             sx={{ background: 'white' }}
           >
             <InputLabel id="demo-simple-select-label">Category</InputLabel>
             <Select
-
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={this.props.state.select}
               label="Category"
               onChange={(e) => this.props.select(e)}
-
             >
               <MenuItem value={'Computers'}>Computers</MenuItem>
               <MenuItem value={'History'}>History</MenuItem>
@@ -104,8 +99,6 @@ class Search extends React.Component<Props>{
             </Select>
           </FormControl>
         </div>
-
-
         <FooterNav />
       </div>
     );

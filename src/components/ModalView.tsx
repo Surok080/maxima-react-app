@@ -2,7 +2,6 @@ import React from 'react';
 import '../app/style/style.scss';
 import { connect } from 'react-redux';
 
-
 interface Props {
   actionBook: any,
   toogleModal: any,

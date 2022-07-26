@@ -12,6 +12,7 @@ interface Props {
   title: any,
   them: any,
 }
+
 interface IState {
   nameBook: string,
 }
@@ -24,9 +25,8 @@ class Header extends React.Component<Props, IState> {
   render() {
     return (
       <div
-        className={`header ${this.props.them === 'light' ? null : 'backgroundGrey' }`}
+        className={`header ${this.props.them === 'light' ? null : 'backgroundGrey'}`}
       >
-
         <div className='header__items'>
           {!this.props.type ? <form
             onSubmit={this.props.searchBook}
@@ -40,7 +40,7 @@ class Header extends React.Component<Props, IState> {
               <img src={iconSearch} alt="search" />
             </button>
             <input
-              className={`header__form-input ${this.props.them === 'light' ? null : ' text-black' }`}
+              className={`header__form-input ${this.props.them === 'light' ? null : ' text-black'}`}
               placeholder="API"
               type="text"
               onChange={(e) => this.props.handleChange(e.target.value)}

@@ -2,9 +2,6 @@ import React from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { Registration, Login, SearchBook, LibraryBook, InfoBook, SettingsApp } from '../providers';
 
-
-
-
 function Routing() {
 
   const navigate = useNavigate();

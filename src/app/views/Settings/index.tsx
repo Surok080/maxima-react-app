@@ -7,7 +7,6 @@ import Radio from '@mui/material/Radio';
 import { ButtonView } from '../../../components/ButtonView';
 import { connect } from 'react-redux';
 
-
 interface Props {
   searchBook: any,
   handleChange: any,
@@ -20,19 +19,14 @@ interface Props {
 
 class Settings extends React.Component<Props>{
 
-  
-
   render() {
     return (
       <div
         className={`container ${this.props.them === 'dark' ? 'backgroundDark' : null}`}
       >
         <Header type={true} title={'Settings'} searchBook={this.props.searchBook} handleChange={this.props.handleChange} state={this.props.state} clearInput={this.props.clearInput} />
-
         <main className='infoBook pt-28 m-auto'>
-
           {this.props.state.statusLoading ? <ReactLoading type='balls' color='#5C426C' height='100%' width='100%' /> : null}
-
           <Radio
             checked={this.props.them === 'light'}
             onChange={(e) => this.props.radioToggle(e)}
@@ -59,16 +53,16 @@ class Settings extends React.Component<Props>{
               },
             }}
           />
-          <div className={`infoBook__bookAuthors ${this.props.them === 'light' ? 'backgroundDark' : null }`}>
+          <div className={`infoBook__bookAuthors ${this.props.them === 'light' ? 'backgroundDark' : null}`}>
             Тема
           </div>
 
         </main>
         <ButtonView
-            className={`login__button ${this.props.them === 'light' ? 'blueButton' : 'skyButton' }`}
-            onClick={this.props.goOut}
-            dataTitle={'GO OUT'}
-          />
+          className={`login__button ${this.props.them === 'light' ? 'blueButton' : 'skyButton'}`}
+          onClick={this.props.goOut}
+          dataTitle={'GO OUT'}
+        />
         <FooterNav />
       </div>
     );

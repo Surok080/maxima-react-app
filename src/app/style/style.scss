@@ -8,12 +8,19 @@ $sky: rgb(12 74 110);
 $itemBook: #bbd2ff;
 $fons: rgb(60, 82, 170);
 
+html {
+  background-color: grey;
+}
+
 .container {
+  margin: auto;
   background-color: #fff;
   height: 100vh;
   display: flex;
   flex-direction: column;
   transition: all .2s linear;
+  max-width: 768px !important;
+
 }
 
 .infoBook {
@@ -49,6 +56,8 @@ $fons: rgb(60, 82, 170);
 .libraryBook {
   flex: 1 0 auto;
   padding: 2px;
+  height: calc(100% - 120px);
+  overflow-y: scroll;
 
   &__item {
     display: flex;
@@ -388,6 +397,8 @@ $fons: rgb(60, 82, 170);
   &__main {
     flex: 1 0 auto;
     padding: 1px;
+    height: calc(100% - 200px);
+    overflow-y: scroll;
   }
 
   &__items {

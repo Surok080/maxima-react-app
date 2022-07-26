@@ -63,8 +63,6 @@ class SettingsController extends React.Component<Props, IState> {
     this.props.navigate("/");
   };
 
-
-
   render() {
 
     return (

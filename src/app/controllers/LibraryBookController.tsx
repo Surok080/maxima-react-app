@@ -92,7 +92,6 @@ export default class LibraryBookController extends React.Component<Props, IState
       this.setState({ bookListUser: filteredBooks })
     }, 300);
     return () => clearTimeout(Debounce);
-
   };
 
   private filterBooks = (searchText: string, listOfBooks: any) => {

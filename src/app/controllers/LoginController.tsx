@@ -68,7 +68,6 @@ export default class LoginController extends React.Component<Props, IState> {
       });
       return;
     }
-
     this.loginApiUser(this.setStateUser(), urlLog);
   };
 
@@ -89,9 +88,7 @@ export default class LoginController extends React.Component<Props, IState> {
           } else {
             sessionStorage.setItem('Access_token', JSON.stringify(data.data.access_token));
           }
-          
           this.props.navigate("/search");
-
         } else {
           this.loginReg();
           this.setState({
@@ -123,6 +120,7 @@ export default class LoginController extends React.Component<Props, IState> {
   };
 
   render() {
+    
     return (
       <View
         navigate={this.props.navigate}

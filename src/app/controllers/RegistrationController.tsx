@@ -38,7 +38,6 @@ export default class RegistrationController extends React.Component<Props, IStat
     const urlReg = 'https://internsapi.public.osora.ru/api/auth/signup';
     const regExpEmail = /\S+@\S+\.\S+/;
 
-
     e.preventDefault();
     this.setState({
       status: false,

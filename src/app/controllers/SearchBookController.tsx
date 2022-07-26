@@ -40,8 +40,6 @@ export default class SearchBookController extends React.Component<Props
     this.getAccount()
   }
 
-
-
   private getAccount = async () => {
     const tokenLocal = await localStorage.getItem('Access_token');
     const tokenSession = await sessionStorage.getItem('Access_token');

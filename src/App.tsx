@@ -1,8 +1,5 @@
 import React from 'react';
 import Routing from './app/Routing/Routing';
-// import { Provider } from 'react-redux';
-// import { createStore } from 'redux';
-// import redux from './app/redux';
 import { connect } from 'react-redux';
 import { toogleThema } from './app/redux/actionTypes';
 

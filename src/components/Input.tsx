@@ -10,9 +10,8 @@ interface Props {
   type: any,
   them: any,
 }
+
 class Input extends React.Component<Props> {
-
-
 
   render() {
     return (

@@ -6,12 +6,10 @@ export default class BookModel {
     if (!data) {
       data = `startIndex=${Math.floor(Math.random() * 100)}&`;
     }
-
     if (category) {
       data += `,subject=${category}`
     }
     const urlLog = `https://www.googleapis.com/books/v1/volumes?q=${data}`;
-
     return this.fetchRequest(urlLog);
   }
 

@@ -22,11 +22,8 @@ class InfoBook extends React.Component<Props>{
         className={`container ${this.props.them === 'dark' ? 'backgroundDark' : null}`}
       >
         <Header type={true} title={'Library-info'} searchBook={this.props.searchBook} handleChange={this.props.handleChange} state={this.props.state} clearInput={this.props.clearInput} />
-
         <main className='infoBook'>
-
           {this.props.state.statusLoading ? <ReactLoading type='balls' color='#5C426C' height='100%' width='100%' /> : null}
-
           <div className='infoBook__bookName'>
             {this.props.state.bookName}
           </div>
@@ -36,7 +33,6 @@ class InfoBook extends React.Component<Props>{
           <div className='infoBook__bookText'>
             {this.props.state.bookText}
           </div>
-
         </main>
         <FooterNav />
       </div>
